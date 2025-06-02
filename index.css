@@ -1,0 +1,168 @@
+@layer reset {
+	Add commentMore actions *,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+
+	html {
+		-moz-text-size-adjust: none;
+		-webkit-text-size-adjust: none;
+		text-size-adjust: none;
+	}
+
+	body,
+	h1,
+	h2,
+	h3,
+	h4,
+	p,
+	figure,
+	blockquote,
+	dl,
+	dd {
+		margin-block-end: 0;
+	}
+
+	dd {
+		margin-inline: 0;
+	}
+
+	body {
+		margin: 0;
+		padding: 0;
+	}
+
+	ul[role="list"],
+	ol[role="list"] {
+		list-style: none;
+	}
+
+	body {
+		line-height: 1.5;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	button,
+	input,
+	label {
+		line-height: 1.1;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4 {
+		text-wrap: balance;
+	}
+
+	a:not([class]) {
+		text-decoration-skip-ink: auto;
+		color: currentColor;
+	}
+
+	img,
+	picture {
+		max-width: 100%;
+		display: block;
+	}
+
+	figure {
+		margin: 0;
+		padding: 0;
+	}
+
+	dialog {
+		padding: 0;
+	}
+
+	input,
+	button,
+	textarea,
+	select {
+		font-family: inherit;
+		font-size: inherit;
+		line-height: inherit;
+		letter-spacing: inherit;
+	}
+
+	textarea:not([rows]) {
+		min-height: 10em;
+	}
+
+	:target {
+		scroll-margin-block: 5ex;
+	}
+}
+
+@layer base {
+	:root {
+		--ff: "Inter", sans-serif;
+		--letter-spacing: -0.05em;
+
+		--step--2: 0.5rem;
+		--step--1: 0.5625rem;
+		--step-0: 0.75rem;
+		--step-1: 0.8125rem;
+		--step-2: 0.875rem;
+		--step-3: 1.125rem;
+
+		--lh-1: 1.143;
+		--lh-2: 1.25;
+		--lh-3: 1.285;
+		--lh-4: 1.333;
+
+		--radius-s: 6px;
+		--radius-m: 10px;
+		--radius-l: 24px;
+
+		--spacing-xxs: 4px;
+		--spacing-xs: 6px;
+		--spacing-s: 8px;
+		--spacing-m: 10px;
+		--spacing-l: 12px;
+		--spacing-xl: 16px;
+		--spacing-xxl: 20px;
+		--spacing-xxxl: 24px;
+
+		--cu-black-pure: #000000;
+		--cu-black-dark: #1c1b1f;
+		--cu-black-darker: #150a12;
+		--cu-black-darkblue: #293a4c;
+
+		--cu-grey-light: #eae9e9;
+		--cu-grey-dark: #c2c2c2;
+		--cu-grey-darker: #676767;
+		--cu-grey-bluish: #8393a3;
+
+		--cu-white-pure: #ffffff;
+		--cu-white-light: #f7f7f7;
+		--cu-white-offish: #f6f6f6;
+		--cu-white-off-white: #f2f2f2;
+
+		--cu-accent-orange: #ff8800;
+		--cu-accent-pink: #ff00b7;
+		--cu-accent-blue: #5eb5f7;
+		--cu-accent-brightgreen: #59ff00;
+		--cu-accent-cyan: #00ffea;
+		--cu-accent-darkgreen: #0a926c;
+		--cu-accent-green: #0db686;
+		--cu-accent-lightgreen: #0adca1;
+		--cu-accent-purple: #9000ff;
+	}
+
+	body {
+		background: linear-gradient(
+			to right,
+			var(--cu-white-offish) 99.7%,
+			var(--cu-grey-light) 99.7%
+		);
+		background-size: 34% 100%;
+		font-family: var(--ff);
+		font-size: var(--step-2);
+		letter-spacing: var(--letter-spacing);
+	}
+}
