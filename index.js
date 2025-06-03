@@ -20,11 +20,11 @@ navigationEl.addEventListener("mousemove", (e) => {
 		dropdownEl.dataset.visible = "true";
 		dropdownEl.dataset.type = hoverBoardEl.dataset.info;
 		dropdownEl.style.setProperty("--position", tracker.position);
-	} else if (e.target.matches("a")) {
+	} else if (e.target.matches(".hover-link")) {
 		dropdownEl.dataset.visible = "false";
 	}
 });
 
 navigationEl.addEventListener("mouseleave", () => {
-	dropdownEl.dataset.visible = "false";
+	// dropdownEl.dataset.visible = "false";
 });
