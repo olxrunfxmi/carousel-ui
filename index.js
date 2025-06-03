@@ -1,5 +1,5 @@
 const navigationEl = document.querySelector(".navigation");
-const dropdownEl = document.querySelector(".dropdown");
+const dropdownEl = document.querySelector(".dropdown-wrapper");
 
 const tracker = {
 	reference: 0,
@@ -15,7 +15,14 @@ navigationEl.addEventListener("mousemove", (e) => {
 	const hoverBoardEl = e.target.closest(".hover-board");
 
 	if (hoverBoardEl) {
-		tracker.current = hoverBoardEl.getBoundingClientRect().left;
+		const details = hoverBoardEl.getBoundingClientRect().width / 2;
+
+		if (hoverBoardEl.getBoundingClientRect().left <= tracker.reference) {
+			tracker.current = hoverBoardEl.getBoundingClientRect().left - details;
+		} else {
+			tracker.current =
+				hoverBoardEl.getBoundingClientRect().left - details + 24;
+		}
 
 		dropdownEl.dataset.visible = "true";
 		dropdownEl.dataset.type = hoverBoardEl.dataset.info;
@@ -26,5 +33,5 @@ navigationEl.addEventListener("mousemove", (e) => {
 });
 
 navigationEl.addEventListener("mouseleave", () => {
-	// dropdownEl.dataset.visible = "false";
+	dropdownEl.dataset.visible = "false";
 });

@@ -105,6 +105,7 @@
 
 		--step--2: 0.5rem;
 		--step--1: 0.5625rem;
+		--step: 0.625rem;
 		--step-0: 0.75rem;
 		--step-1: 0.8125rem;
 		--step-2: 0.875rem;
@@ -184,6 +185,13 @@
 		align-items: center;
 		justify-content: space-between;
 	}
+
+	.container {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: auto 1fr auto;
+		min-height: 100vh;
+	}
 }
 
 @layer styling {
@@ -219,15 +227,13 @@
 			}
 		}
 
-		.dropdown {
+		.dropdown-wrapper {
+			padding-block-start: var(--spacing-xxxl);
 			position: absolute;
-			top: 100%;
-			background: var(--cu-white-light);
-			box-shadow: 15px 20px 30px 12px rgba(196, 193, 193, 0.25);
-			padding-block: 12px 16px;
-			border-radius: 10px;
+			top: 70%;
+
 			transform: translateX(calc(var(--position) * 1px));
-			transition: transform 0.2s ease-in;
+			transition: transform 0.2s linear;
 			max-width: 357px;
 
 			&[data-visible="false"] {
@@ -238,11 +244,11 @@
 				--color: var(--cu-accent-pink);
 				--color-hover: var(--cu-hover-pink);
 
-				& > * {
+				& > .dropdown > * {
 					display: none;
 				}
 
-				.one {
+				.dropdown > .one {
 					display: block;
 				}
 			}
@@ -252,11 +258,11 @@
 				--color: var(--cu-accent-purple);
 				--color-hover: var(--cu-hover-purple);
 
-				& > * {
+				& > .dropdown > * {
 					display: none;
 				}
 
-				.two {
+				.dropdown > .two {
 					display: block;
 				}
 			}
@@ -265,11 +271,11 @@
 				--color: var(--cu-accent-skyblue);
 				--color-hover: var(--cu-hover-skyblue);
 
-				& > * {
+				& > .dropdown > * {
 					display: none;
 				}
 
-				.three {
+				.dropdown > .three {
 					display: block;
 				}
 			}
@@ -278,14 +284,22 @@
 				--color: var(--cu-accent-yellowgreen);
 				--color-hover: var(--cu-hover-yellowgreen);
 
-				& > * {
+				& > .dropdown > * {
 					display: none;
 				}
 
-				.four {
+				.dropdown > .four {
 					display: block;
 				}
 			}
+		}
+
+		.dropdown {
+			border-radius: 10px;
+			background: var(--cu-white-light);
+			box-shadow: 15px 20px 30px 12px rgba(196, 193, 193, 0.25);
+			padding-block: 12px 16px;
+			position: relative;
 
 			.info-board {
 				.heading {
@@ -391,6 +405,7 @@
 
 					p:first-of-type {
 						text-align: end;
+						font-size: var(--step-0);
 					}
 				}
 			}
@@ -442,6 +457,7 @@
 			max-width: 480px;
 			margin-block-start: var(--spacing-xxxl);
 			margin-inline: auto;
+			padding-block-end: var(--spacing-big);
 		}
 	}
 }
