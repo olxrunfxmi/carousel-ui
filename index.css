@@ -451,7 +451,122 @@
 			background: var(--cu-accent-pink);
 		}
 	}
-	article {
+
+	.btn {
+		border: none;
+		font-size: var(--step-0);
+		line-height: var(--lh-4);
+		padding-block: var(--spacing-xxxs);
+
+		&.orange {
+			background: var(--cu-accent-orange);
+			color: var(--cu-black-darker);
+		}
+
+		&.purple {
+			background: var(--cu-accent-purple);
+			color: var(--cu-white-light);
+		}
+
+		&.pink {
+			background: var(--cu-accent-pink);
+			color: var(--cu-black-darker);
+		}
+
+		&.cyan {
+			background: var(--cu-accent-cyan);
+			color: var(--cu-black-darker);
+		}
+
+		&.orange {
+			background: var(--cu-accent-brightgreen);
+			color: var(--cu-black-darker);
+		}
+	}
+	.card-container {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: var(--spacing-l);
+	}
+
+	main {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+	}
+
+	.card {
+		max-width: 240px;
+		border-radius: var(--radius-m);
+		background: var(--cu-white-pure);
+		display: grid;
+		gap: var(--spacing-xxs);
+		padding: var(--spacing-xs);
+		box-shadow: 15px 20px 30px 12px rgba(196, 193, 193, 0.25);
+		flex-shrink: 0;
+
+		.box {
+			width: 100%;
+			aspect-ratio: 56 / 37;
+			background: var(--cu-white-off-white);
+			border-radius: var(--radius-s);
+			margin-block-end: var(--spacing-xxs);
+		}
+
+		h2,
+		p {
+			margin: 0;
+			color: var(--cu-black-pure);
+		}
+
+		p {
+			color: var(--cu-grey-darker);
+		}
+
+		&.big {
+			h2 {
+				font-size: var(--step-3);
+				line-height: var(--lh-2);
+			}
+
+			p {
+				font-size: var(--step-0);
+				line-height: var(--lh-4);
+			}
+		}
+
+		&.medium {
+			max-width: 180px;
+
+			h2 {
+				font-size: var(--step-1);
+				line-height: var(--lh-2);
+			}
+
+			p {
+				font-size: var(--step);
+				line-height: var(--lh-4);
+			}
+		}
+
+		&.small {
+			max-width: 162px;
+
+			h2 {
+				font-size: var(--step-0);
+				line-height: var(--lh-4);
+			}
+
+			p {
+				font-size: var(--step--2);
+				line-height: var(--lh-2);
+			}
+		}
+	}
+
+	.talking-point {
 		p {
 			/* line-height: var(--lh-3); */
 			max-width: 480px;
