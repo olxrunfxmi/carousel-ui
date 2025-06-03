@@ -1,16 +1,25 @@
 const navigationEl = document.querySelector(".navigation");
 const dropdownEl = document.querySelector(".dropdown");
 
+const tracker = {
+	reference: 0,
+	current: 0,
+	get position() {
+		return this.current - this.reference;
+	},
+};
+
 navigationEl.addEventListener("mousemove", (e) => {
-	// console.log(e.target.closest(".hover-board"));
+	tracker.reference = navigationEl.getBoundingClientRect().left;
+
 	const hoverBoardEl = e.target.closest(".hover-board");
 
 	if (hoverBoardEl) {
-		console.log(hoverBoardEl.getBoundingClientRect().left);
-		const leftValue = hoverBoardEl.getBoundingClientRect().left + "px";
+		tracker.current = hoverBoardEl.getBoundingClientRect().left;
+
 		dropdownEl.dataset.visible = "true";
 		dropdownEl.dataset.type = hoverBoardEl.dataset.info;
-		dropdownEl.style.left = leftValue;
+		dropdownEl.style.setProperty("--position", tracker.position);
 	} else if (e.target.matches("a")) {
 		dropdownEl.dataset.visible = "false";
 	}
