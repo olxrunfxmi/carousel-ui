@@ -596,7 +596,18 @@
 					line-height: var(--lh-2);
 				}
 			}
+
+			&[data-flip="invert"] {
+				transform: scale(var(--dw), var(--dh));
+			}
+
+			&[data-flip="play"] {
+				transform: none;
+				transition: transform 1s;
+			}
 		}
+
+		transition: transform 0.4s;
 
 		&[data-direction="horizontal"] {
 			flex-direction: row;

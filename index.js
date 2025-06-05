@@ -25,34 +25,28 @@ cardContainerEl.addEventListener("click", (e) => {
 	const clickedCardEl = e.target.closest(".card");
 
 	if (clickedCardEl && cardContainerEl.dataset.direction === "horizontal") {
-		const currentDiff =
-			getComputedStyle(cardContainerEl).getPropertyValue("--diff");
-		state.updateX = Number(currentDiff);
-		state.referenceX = cardContainerEl
-			.querySelector("[data-focus]")
-			.getBoundingClientRect().left;
-
-		setAllCardsTo("small");
-		changeCardSeries(clickedCardEl);
-
-		state.currentX = clickedCardEl.getBoundingClientRect().left;
-		cardContainerEl.style.setProperty("--diff", state.diffX);
+		const cardProp = {
+			size: "small",
+			update: "updateX",
+			reference: "referenceX",
+			current: "currentX",
+			difference: "diffX",
+			direction: "left",
+		};
+		flip(executeCarousel, clickedCardEl, cardProp);
 	} else if (
 		clickedCardEl &&
 		cardContainerEl.dataset.direction === "vertical"
 	) {
-		const currentDiff =
-			getComputedStyle(cardContainerEl).getPropertyValue("--diff");
-		state.updateY = Number(currentDiff);
-		state.referenceY = cardContainerEl
-			.querySelector("[data-focus]")
-			.getBoundingClientRect().top;
-
-		setAllCardsTo("small");
-		changeCardSeries(clickedCardEl);
-
-		state.currentY = clickedCardEl.getBoundingClientRect().top;
-		cardContainerEl.style.setProperty("--diff", state.diffY);
+		const cardProp = {
+			size: "small",
+			update: "updateY",
+			reference: "referenceY",
+			current: "currentY",
+			difference: "diffY",
+			direction: "top",
+		};
+		flip(executeCarousel, clickedCardEl, cardProp);
 	}
 });
 
@@ -117,4 +111,44 @@ function changeCardSeries(card) {
 
 	card.dataset.size = "big";
 	card.dataset.focus = "true";
+}
+
+function executeCarousel(size, element) {
+	setAllCardsTo(size);
+	changeCardSeries(element);
+}
+
+function flip(func, element, prop) {
+	// First Position
+	const firstClickedCardRect = element.getBoundingClientRect();
+
+	const currentDiff =
+		getComputedStyle(cardContainerEl).getPropertyValue("--diff");
+	state[prop.update] = Number(currentDiff);
+	state[prop.reference] = cardContainerEl
+		.querySelector("[data-focus]")
+		.getBoundingClientRect()[prop.direction];
+
+	requestAnimationFrame(() => {
+		func(prop.size, element); // Effects UI Layout change
+		state[prop.current] = element.getBoundingClientRect()[prop.direction];
+		cardContainerEl.style.setProperty("--diff", state[prop.difference]);
+
+		// Last Position
+		const lastClickedCardRect = element.getBoundingClientRect();
+
+		// Invert
+		const dw = firstClickedCardRect.width / lastClickedCardRect.width;
+		const dh = firstClickedCardRect.height / lastClickedCardRect.height;
+
+		element.style.setProperty("--dw", dw);
+		element.style.setProperty("--dh", dh);
+
+		element.dataset.flip = "invert";
+
+		requestAnimationFrame(() => {
+			// Play
+			element.dataset.flip = "play";
+		});
+	});
 }
