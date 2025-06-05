@@ -50,6 +50,54 @@ cardContainerEl.addEventListener("click", (e) => {
 	}
 });
 
+window.addEventListener("keydown", (e) => {
+	if (cardContainerEl.dataset.direction === "horizontal") {
+		let clickedCardEl;
+
+		if (e.key === "ArrowRight") {
+			clickedCardEl =
+				cardContainerEl.querySelector("[data-focus]").nextElementSibling;
+		} else if (e.key === "ArrowLeft") {
+			clickedCardEl =
+				cardContainerEl.querySelector("[data-focus]").previousElementSibling;
+		}
+
+		if (clickedCardEl !== null) {
+			const cardProp = {
+				size: "small",
+				update: "updateX",
+				reference: "referenceX",
+				current: "currentX",
+				difference: "diffX",
+				direction: "left",
+			};
+			flip(executeCarousel, clickedCardEl, cardProp);
+		}
+	} else if (cardContainerEl.dataset.direction === "vertical") {
+		let clickedCardEl;
+
+		if (e.key === "ArrowDown") {
+			clickedCardEl =
+				cardContainerEl.querySelector("[data-focus]").nextElementSibling;
+		} else if (e.key === "ArrowUp") {
+			clickedCardEl =
+				cardContainerEl.querySelector("[data-focus]").previousElementSibling;
+		}
+
+		if (clickedCardEl !== null) {
+			const cardProp = {
+				size: "small",
+				update: "updateY",
+				reference: "referenceY",
+				current: "currentY",
+				difference: "diffY",
+				direction: "top",
+			};
+			flip(executeCarousel, clickedCardEl, cardProp);
+		}
+	}
+});
+
 switcherEl.addEventListener("click", (e) => {
 	if (e.target.closest("#horizontal")) {
 		cardContainerEl.dataset.direction = "horizontal";
